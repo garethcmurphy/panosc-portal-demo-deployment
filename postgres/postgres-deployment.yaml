@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: panosc-postgres
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: panosc-postgres
+    spec:
+      hostname: panosc-postgres
+      containers:
+        - name: panosc-postgres
+          image: panosc-postgres
+          imagePullPolicy: "Never"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: panosc-postgres-config
