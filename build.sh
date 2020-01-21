@@ -3,7 +3,7 @@ set -e
 SERVICE_REPO_DIR=git_repos
 
 # Build panosc-portal-postgres
-docker build -t panosc-portal-postgres panosc-portal-postgres
+docker build -t panosc-portal-postgres panosc-portal-postgres/docker-image
 
 # Create and clean git repos dir
 mkdir -p $SERVICE_REPO_DIR
