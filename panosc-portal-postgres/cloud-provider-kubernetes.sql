@@ -25,6 +25,20 @@ CREATE SCHEMA "cloud-provider-kubernetes";
 
 ALTER SCHEMA "cloud-provider-kubernetes" OWNER TO "cloud-provider-kubernetes";
 
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -452,8 +466,8 @@ SELECT pg_catalog.setval('"cloud-provider-kubernetes".flavour_id_seq', 3, true);
 --
 
 COPY "cloud-provider-kubernetes".image (id, name, repository, path, description, command, args, run_as_uid) FROM stdin;
-1	ubuntu-xrdp	docker.ill.fr	panosc/data-analysis-services/panosc-images/danielguerra/ubuntu-xrdp	Ubuntu with XRDP service			\N
 2	jupyter	\N	jupyter/base-notebook	Jupyter base notebook	start.sh	jupyter,notebook,--NotebookApp.token=''	0
+1	ubuntu-xrdp	\N	danielguerra/ubuntu-xrdp	Ubuntu with XRDP service	\N	\N	\N
 \.
 
 
