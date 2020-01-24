@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-provider-kubernetes
+  namespace: panosc-portal
+  labels:
+    app: cloud-provider-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-provider-kubernetes
+  template:
+    metadata:
+      labels:
+        app: cloud-provider-kubernetes
+    spec:
+      serviceAccountName: cloud-provider-kubernetes-sa
+      hostname: cloud-provider-kubernetes
+      containers:
+        - name: cloud-provider-kubernetes
+          image: cloud-provider-kubernetes
+          imagePullPolicy: "Never"
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: cloud-provider-kubernetes-config
+

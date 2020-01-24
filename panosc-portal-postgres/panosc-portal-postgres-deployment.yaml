@@ -1,15 +1,18 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: panosc-portal-postgres
+  namespace: panosc-portal
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: panosc-portal-postgres
   template:
     metadata:
       labels:
         app: panosc-portal-postgres
     spec:
-      hostname: panosc-portal-postgres
       containers:
         - name: panosc-portal-postgres
           image: panosc-portal-postgres
@@ -18,4 +21,4 @@ spec:
             - containerPort: 5432
           envFrom:
             - configMapRef:
-                name: panosc-postgres-config
+                name: panosc-portal-postgres-config
