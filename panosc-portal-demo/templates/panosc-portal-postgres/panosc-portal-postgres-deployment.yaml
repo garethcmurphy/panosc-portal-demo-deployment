@@ -15,13 +15,28 @@ spec:
     spec:
       containers:
         - name: panosc-portal-postgres
-          image: {{ .Values.dockerRegistry.url }}:{{ .Values.dockerRegistry.port }}/panosc-portal/postgres
+          image: postgres
           ports:
-            - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: panosc-portal-postgres-config
+              - containerPort: 5432
+          env:
+            - name: CLOUD_PROVIDER_K8S_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: panosc-portal-postgres-secret
+                  key: CLOUD_PROVIDER_K8S_DATABASE_PASSWORD
+          volumeMounts:
+            - mountPath: /docker-entrypoint-initdb.d/
+              name: init-file
+            - mountPath: /tmp/
+              name: sql-dump
       {{- if and .Values.dockerRegistry.host .Values.dockerRegistry.username .Values.dockerRegistry.password }}
       imagePullSecrets:
         - name: {{ .Values.dockerRegistry.host | replace "." "-" }}
       {{ end }}
+      volumes:
+        - name: init-file
+          configMap:
+            name: panosc-portal-postgres-shconfig
+        - name: sql-dump
+          configMap:
+            name: panosc-portal-postgres-sqldump

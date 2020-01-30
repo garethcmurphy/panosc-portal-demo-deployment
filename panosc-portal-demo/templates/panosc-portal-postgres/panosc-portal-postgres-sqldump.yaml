@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: panosc-portal-postgres-config
+  name: panosc-portal-postgres-sqldump
   namespace: {{ .Values.panoscPortal.namespace }}
   labels:
     app: panosc-portal-postgres
 data:
-  CLOUD_PROVIDER_K8S_DATABASE_PASSWORD: {{ .Values.panoscPortalPostgres.password }}
+{{(.Files.Glob "postgres-config-files/*.sql").AsConfig | indent 4 }}
+

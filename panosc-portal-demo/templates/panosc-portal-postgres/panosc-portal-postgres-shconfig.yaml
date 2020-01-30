@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: panosc-portal-postgres-shconfig
+  namespace: {{ .Values.panoscPortal.namespace }}
+  labels:
+    app: panosc-portal-postgres
+data:
+{{(.Files.Glob "postgres-config-files/*.sh").AsConfig | indent 4 }}

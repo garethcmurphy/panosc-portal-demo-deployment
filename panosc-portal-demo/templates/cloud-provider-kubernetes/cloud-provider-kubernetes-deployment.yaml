@@ -19,7 +19,7 @@ spec:
       hostname: cloud-provider-kubernetes
       containers:
         - name: cloud-provider-kubernetes
-          image: {{ .Values.dockerRegistry.url }}:{{ .Values.dockerRegistry.port }}/panosc-portal/cloud-provider-kubernetes
+          image: {{ .Values.dockerRegistry.host }}/panosc-portal/cloud-provider-kubernetes
           ports:
               - containerPort: 3000
           envFrom:
