@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: panosc-portal-postgres
-  namespace: panosc-portal
+  namespace: {{ .Values.panoscPortal.namespace }}
 spec:
   replicas: 1
   selector:
@@ -15,10 +15,13 @@ spec:
     spec:
       containers:
         - name: panosc-portal-postgres
-          image: panosc-portal-postgres
-          imagePullPolicy: "Never"
+          image: {{ .Values.dockerRegistry.url }}:{{ .Values.dockerRegistry.port }}/panosc-portal/postgres
           ports:
             - containerPort: 5432
           envFrom:
             - configMapRef:
                 name: panosc-portal-postgres-config
+      {{- if and .Values.dockerRegistry.host .Values.dockerRegistry.username .Values.dockerRegistry.password }}
+      imagePullSecrets:
+        - name: {{ .Values.dockerRegistry.host | replace "." "-" }}
+      {{ end }}

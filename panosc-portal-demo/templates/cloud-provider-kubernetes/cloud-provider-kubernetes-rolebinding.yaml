@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
  name: cloud-provider-kubernetes-rolebinding
- namespace: panosc
+ namespace: {{ .Values.cloudProviderKubernetes.instancesNamespace }}
 roleRef:
  kind: Role
  name: cloud-provider-kubernetes-role
@@ -10,4 +10,4 @@ roleRef:
 subjects:
  - kind: ServiceAccount
    name: cloud-provider-kubernetes-sa
-   namespace: panosc-portal
+   namespace: {{ .Values.panoscPortal.namespace }}

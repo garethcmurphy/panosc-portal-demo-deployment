@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cloud-provider-kubernetes
-  namespace: panosc-portal
+  namespace: {{ .Values.panoscPortal.namespace }}
   labels:
     app: cloud-provider-kubernetes
 spec:
@@ -19,11 +19,13 @@ spec:
       hostname: cloud-provider-kubernetes
       containers:
         - name: cloud-provider-kubernetes
-          image: cloud-provider-kubernetes
-          imagePullPolicy: "Never"
+          image: {{ .Values.dockerRegistry.url }}:{{ .Values.dockerRegistry.port }}/panosc-portal/cloud-provider-kubernetes
           ports:
-            - containerPort: 3000
+              - containerPort: 3000
           envFrom:
             - configMapRef:
                 name: cloud-provider-kubernetes-config
-
+      {{- if and .Values.dockerRegistry.host .Values.dockerRegistry.username .Values.dockerRegistry.password }}
+      imagePullSecrets:
+        - name: {{ .Values.dockerRegistry.host | replace "." "-" }}
+      {{ end }}
