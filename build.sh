@@ -28,8 +28,11 @@ rm -rf "${SERVICE_REPO_DIR:?}/".* || :
 
 git clone https://github.com/panosc-portal/cloud-provider-kubernetes.git $SERVICE_REPO_DIR/cloud-provider-kubernetes
 
-# build docker image of cloud-provider-kubernetes
-docker build -t cloud-provider-kubernetes $SERVICE_REPO_DIR/cloud-provider-kubernetes
+if [ "$HTTP_PROXY" ] && [ "$HTTPS_PROXY" ]; then
+  docker build -t cloud-provider-kubernetes --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" $SERVICE_REPO_DIR/cloud-provider-kubernetes
+else
+  docker build -t cloud-provider-kubernetes $SERVICE_REPO_DIR/cloud-provider-kubernetes
+fi
 
 # push cloud-provider-kubernetes to docker registry
 docker tag cloud-provider-kubernetes "$DOCKER_REGISTRY_HOST"/panosc-portal/cloud-provider-kubernetes
