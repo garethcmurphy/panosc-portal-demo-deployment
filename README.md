@@ -11,7 +11,8 @@ This project is a kubernetes deployment demo version of the PaNOSC Portal.
 ## Installation    
 Clone and move this project to your kubernetes cluster and run the following command:
 ```
-./panosc-demo-deployment/build.sh  
+cd panosc-portal-demo-deployment
+./build.sh  
 ```
 
 ## Status
