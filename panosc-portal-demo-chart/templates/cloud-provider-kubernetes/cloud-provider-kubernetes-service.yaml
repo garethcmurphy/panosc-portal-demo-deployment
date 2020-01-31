@@ -9,3 +9,4 @@ spec:
     app: cloud-provider-kubernetes
   ports:
     - port: 3000
+      nodePort: {{ .Values.cloudProviderKubernetes.nodePort }}

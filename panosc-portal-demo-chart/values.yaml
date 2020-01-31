@@ -2,13 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-dockerRegistry:
+
 
 panoscPortal:
   namespace: panosc-portal
 
 cloudProviderKubernetes:
-  instancesNamespace: panosc
+  instancesNamespace: panosc-kubernetes-instances
+  nodePort: 32300
 
 panoscPortalPostgres:
   host: panosc-portal-postgres
@@ -18,3 +19,4 @@ panoscPortalPostgres:
   type: postgres
   databaseName: cloud-provider-kubernetes
   schema: cloud-provider-kubernetes
+  nodePort: 32301
