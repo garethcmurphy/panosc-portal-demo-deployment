@@ -1,0 +1,20 @@
+# Default values for panosc-portal-deployment.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+dockerRegistry:
+
+panoscPortal:
+  namespace: panosc-portal
+
+cloudProviderKubernetes:
+  instancesNamespace: panosc
+
+panoscPortalPostgres:
+  host: panosc-portal-postgres
+  username: cloud-provider-kubernetes
+  password: panosc
+  port: 5432
+  type: postgres
+  databaseName: cloud-provider-kubernetes
+  schema: cloud-provider-kubernetes
