@@ -15,6 +15,11 @@ cd panosc-portal-demo-deployment
 ./build.sh  
 ```
 
+## Uninstall  
+```
+helm uninstall panosc-portal-demo
+```
+
 ## Status
 
 31/01/2019 :
