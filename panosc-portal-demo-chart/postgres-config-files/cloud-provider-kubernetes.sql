@@ -515,7 +515,6 @@ SELECT pg_catalog.setval('"cloud-provider-kubernetes".image_protocol_id_seq', 8,
 --
 
 COPY "cloud-provider-kubernetes".image_volume (id, name, path, read_only, image_id) FROM stdin;
-1	jupyter-user-home	/home/jovyan	f	2
 \.
 
 
