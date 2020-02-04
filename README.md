@@ -4,15 +4,15 @@ PaNOSC  Portal Demo Deployment
 This project is a kubernetes deployment demo version of the PaNOSC Portal. 
 
 ## Requirements :
-- Have a kubernetes cluster with Helm 3
+- Have a kubernetes cluster with Helm 3 ( see https://helm.sh/docs/intro/install/)
 - Have a private registry with no authentication  ( see https://docs.docker.com/registry/deploying/ )
 
 
-## Installation    
-Clone and move this project to your kubernetes cluster and run the following command:
+## Installation
+To deploy the portal, you need to move this project to your kubernetes cluster and connect to a user that is a member of the docker group.<br/>
+Afterward, move to the directory and execute the script deploy.sh followed by the address of your private repository:
 ```
-cd panosc-portal-demo-deployment
-./build.sh  
+./deploy.sh  <YourPrivateRepoAdresse>
 ```
 
 ## Uninstall  

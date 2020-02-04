@@ -3,6 +3,8 @@ set -e
 
 SERVICE_REPO_DIR=git_repos
 
+DOCKER_REGISTRY_HOST=$1
+
 KUBERTES_NAMESPACES=$(kubectl get ns)
 
 if [[ "$KUBERTES_NAMESPACES" == *"panosc-kubernetes-instances"* ]] && [[ "$KUBERTES_NAMESPACES" == *"panosc-portal"* ]]; then
@@ -19,7 +21,6 @@ elif [[ "$KUBERTES_NAMESPACES" == *"panosc-kubernetes-instances"* ]]; then
   exit
 fi
 
-read -p "What is the address for your registry? " -r DOCKER_REGISTRY_HOST
 
 # Create and clean git repos dir
 mkdir -p $SERVICE_REPO_DIR
@@ -28,8 +29,21 @@ rm -rf "${SERVICE_REPO_DIR:?}/".* || :
 
 git clone https://github.com/panosc-portal/cloud-provider-kubernetes.git $SERVICE_REPO_DIR/cloud-provider-kubernetes
 
-if [ "$HTTP_PROXY" ] && [ "$HTTPS_PROXY" ]; then
-  docker build -t cloud-provider-kubernetes --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" $SERVICE_REPO_DIR/cloud-provider-kubernetes
+
+if [ "$http_proxy" ] || [ "$https_proxy" ] ; then
+  useProxy=true
+  httpProxy="$http_proxy"
+  httpsProxy="$https_proxy"
+elif [ "$HTTP_PROXY" ] || [ "$HTTPS_PROXY" ] ; then
+  useProxy=true
+  httpProxy="$http_proxy"
+  httpsProxy="$https_proxy"
+else
+  useProxy=false
+fi
+
+if [ "$useProxy" ] ; then
+  docker build -t cloud-provider-kubernetes --build-arg HTTP_PROXY="$httpProxy" --build-arg HTTPS_PROXY="$httpsProxy" $SERVICE_REPO_DIR/cloud-provider-kubernetes
 else
   docker build -t cloud-provider-kubernetes $SERVICE_REPO_DIR/cloud-provider-kubernetes
 fi
