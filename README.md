@@ -16,8 +16,10 @@ The whole architecture of the portal is documented at the following address: htt
 To deploy the portal, you need to move this project to your kubernetes cluster and connect to a user that is a member of the docker group.<br/>
 Afterward, move to the directory and execute the script deploy.sh followed by the address of your private repository:
 ```
-./deploy.sh  <YourPrivateRepoAdresse>
+./deploy.sh  <YourPrivateRepoAddress>
 ```
+This script will push the microservices docker images to your private docker registry and then deploy them on the kubernetes cluster with helm.
+You can then find the kubernetes services and pods in the namespace panosc-portal.
 
 ## Uninstall  
 ```
@@ -30,15 +32,23 @@ helm uninstall panosc-portal-demo
 
 For this demo, this microservice can be use to create a Desktop instance (using a [xrdp Ubuntu docker image](https://hub.docker.com/r/danielguerra/ubuntu-xrdp-base)) or a Jupyter Notebook instance (using a basic [Jupiter Notebook docker image](https://hub.docker.com/r/jupyter/datascience-notebook)).
 
-Note: The Ubuntu image default user and password is ubuntu
+Note: The Ubuntu image default user and password is ubuntu.
 
 To use the microservice, you can use the [PaNOSC Cloud Provider CLI Client](https://github.com/panosc-portal/cloud-provider-client-cli) by specifying the ip address of your kubernetes cluster and the cloud-provider-kubernetes service external port (port 32300).
 <br/>Example:
 
-Add an instance to the cloud-provider 
+Add an instance to the cloud-provider:
 ```
-cloud-provider instance:add -u http://<kubernetesClusterAdresse>:32300
+./bin/run instance:add -u http://<kubernetesClusterAddress>:32300
 ```
+
+List all the created instances:
+```
+./bin/run instance:list -u http://<kubernetesClusterAddress>:32300
+```
+Note: if your are using docker-desktop, use the localhost address instead of the given address
+
+All the object related to the created instances can be find in kubernetes under the namespace panosc-kubernetes-instances.
 
 <br/>
 The database is also accessible with the following information:
