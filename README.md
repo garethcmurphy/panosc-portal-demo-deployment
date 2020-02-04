@@ -51,6 +51,14 @@ Note: if your are using docker-desktop, use the localhost address instead of the
 
 All the object related to the created instances can be find in kubernetes under the namespace panosc-kubernetes-instances.
 
+List all the created instances:
+```
+./bin/run instance:list -u http://<kubernetesClusterAddress>:32300
+```
+Note: if your are using docker-desktop, use the localhost address instead of the given address
+
+All the object related to the created instances can be find in kubernetes under the namespace panosc-kubernetes-instances.
+
 <br/>
 The database is also accessible with the following information:
 
