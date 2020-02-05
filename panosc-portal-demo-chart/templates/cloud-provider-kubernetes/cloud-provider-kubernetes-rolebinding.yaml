@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
- name: cloud-provider-kubernetes-rolebinding
+ name: cloud-provider-kubernetes-clusterrolebinding
 roleRef:
  kind: ClusterRole
  name: cloud-provider-kubernetes-cluster-role

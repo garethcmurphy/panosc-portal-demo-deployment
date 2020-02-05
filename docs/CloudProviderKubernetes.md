@@ -31,7 +31,8 @@ Next you can follow the status of your instance by running the next command:
 ```
 ./bin/run instance:list -u http://<kubernetesClusterAddress>:32300
 ```
-Here you will see 
+Here you will also be able to see the hostname for your instance (witch should be the hostname of you kubernetes master node) 
+and the protocol used on that instance with the exposed port number.
 
 Note: if your are using docker-desktop, use the localhost address instead of the given address
 

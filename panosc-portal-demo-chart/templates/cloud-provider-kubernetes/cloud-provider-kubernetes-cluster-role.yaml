@@ -4,5 +4,5 @@ metadata:
   name: cloud-provider-kubernetes-cluster-role
 rules:
   - apiGroups: ["", "extensions", "apps"]
-    resources: ["pods", "services", "namespaces", "deployments", "secrets","nodes"]
+    resources: ["pods", "services", "namespaces", "deployments", "secrets","nodes","endpoints"]
     verbs: ["list", "get","create", "delete"]
