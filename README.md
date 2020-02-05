@@ -22,54 +22,15 @@ This script will push the microservices docker images to your private docker reg
 You can then find the kubernetes services and pods in the namespace panosc-portal.
 
 ## Uninstall  
+To uninstall all the kubernetes 
 ```
 helm uninstall panosc-portal-demo
 ```
-
+Note: If you want to reinstall it afterwards, you will have to wait a couple of minutes for all the kubernetes namespaces to be deleted
 ## Documentation
 
 ### Cloud Provider Kubernetes
 
-For this demo, this microservice can be used to create a Remote Desktop instance (using a [xrdp Ubuntu docker image](https://hub.docker.com/r/danielguerra/ubuntu-xrdp-base)) or a Jupyter Notebook instance (using a basic [Jupiter Notebook docker image](https://hub.docker.com/r/jupyter/base-notebook)).
-
-
-Note: for the Remote Desktop instance, the Ubuntu default user and password are both ubuntu
-
-To use the microservice, you can use the [PaNOSC Cloud Provider CLI Client](https://github.com/panosc-portal/cloud-provider-client-cli) by specifying the ip address of your kubernetes cluster and the cloud-provider-kubernetes service external port (port 32300).
-<br/>Example:
-
-Add an instance to the cloud-provider:
-```
-./bin/run instance:add -u http://<kubernetesClusterAddress>:32300
-```
-
-List all the created instances:
-```
-./bin/run instance:list -u http://<kubernetesClusterAddress>:32300
-```
-Note: if your are using docker-desktop, use the localhost address instead of the given address
-
-All the object related to the created instances can be find in kubernetes under the namespace panosc-kubernetes-instances.
-
-List all the created instances:
-```
-./bin/run instance:list -u http://<kubernetesClusterAddress>:32300
-```
-Note: if your are using docker-desktop, use the localhost address instead of the given address
-
-All the object related to the created instances can be find in kubernetes under the namespace panosc-kubernetes-instances.
-
-<br/>
-The database is also accessible with the following information:
-
-```
-host: panosc-portal-postgres  
-port: 32301
-username: cloud-provider-kubernetes  
-password: panosc
-databaseName: cloud-provider-kubernetes  
-schema: cloud-provider-kubernetes
-```
 
 
 ## Status
