@@ -11,6 +11,9 @@ The whole architecture of the portal is documented at the following address: htt
 - A kubernetes cluster with Helm 3 (see https://helm.sh/docs/intro/install/)
 - A private Docker registry with no authentication (see https://docs.docker.com/registry/deploying/)
 
+Note: Instead of deploying a kubernetes cluster, you can use docker desktop on Mac or Windows. 
+In that case, you have to use your localhost IP address for all connection to a container
+instead of the displayed IP
 
 ## Installation
 To deploy the portal, you need to clone this project to your kubernetes cluster and connect to a user that is a member of the docker group.<br/>
@@ -29,7 +32,7 @@ helm uninstall panosc-portal-demo
 Note: If you want to reinstall it afterwards, you will have to wait a couple of minutes for all the kubernetes namespaces to be deleted
 ## Documentation
 
-### Cloud Provider Kubernetes
+#### [Cloud Provider Kubernetes](docs/CloudProviderKubernetes.md)
 
 
 
