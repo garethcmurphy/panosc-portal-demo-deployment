@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-DEPLOYMENT_VERSION="0.9.2"
+DEPLOYMENT_VERSION="0.9.3"
 
 SERVICE_REPO_DIR=git_repos
 
@@ -57,11 +57,3 @@ rm -rf $SERVICE_REPO_DIR
 
 helm install panosc-portal-demo --set dockerRegistry.host="${DOCKER_REGISTRY_HOST}" ./panosc-portal-demo-chart
 
-while [ -z "$CLOUD_PROVIDER_IP" ] || [ -z "$PANOSC_POSTGRES_IP" ]; do
-  CLOUD_PROVIDER_IP=$(kubectl get pods -n panosc-portal --selector=app=cloud-provider-kubernetes -o jsonpath='{.items[*].status.hostIP}')
-  PANOSC_POSTGRES_IP=$(kubectl get pods -n panosc-portal --selector=app=panosc-portal-postgres -o jsonpath='{.items[*].status.hostIP}')
-done
-
-echo
-echo "Cloud Provider IP address is $CLOUD_PROVIDER_IP"
-echo "PaNOSC Postgres database IP address is $PANOSC_POSTGRES_IP"

@@ -14,7 +14,7 @@ To use this service, you can clone the project  [PaNOSC Cloud Provider CLI Clien
   
 After you have installed the CLI, move to it's directory and run the next command to add an instance.  
 ```  
-./bin/run instance:add -u http://<CloudProviderIP>:32300  
+./bin/run instance:add -u http://<kubernetesMasterAddress>:32300  
 ```  
 You will then be able to choose the image you want for your instance and then the flavour that you want (i.e CPU and RAM)<br/>  
   
@@ -37,7 +37,8 @@ All the object related to the created instances can be find in kubernetes under 
 The database is also accessible with the following information:  
   
 ```  
-host: <PanoscPostgresIP> port: 32301  
+host: <kubernetesMasterAddress> 
+port: 32301  
 username: cloud-provider-kubernetes password: panosc  
 databaseName: cloud-provider-kubernetes schema: cloud-provider-kubernetes  
 ```
