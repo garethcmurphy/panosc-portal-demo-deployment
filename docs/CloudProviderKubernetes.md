@@ -2,7 +2,7 @@ Cloud Provider Kubernetes
 =========================  
   
 ## Description  
-The Cloud Provider Kubernetes is a micreservice that allows to create instances on a kubernetes service.  
+The Cloud Provider Kubernetes is a microservice that allows to create instances on a kubernetes cluster.  
   
 For this demo, this microservice can be used to create a Remote Desktop instance (using a [xrdp Ubuntu docker image](https://hub.docker.com/r/danielguerra/ubuntu-xrdp-base)) or a Jupyter Notebook instance (using a basic [Jupiter Notebook docker image](https://hub.docker.com/r/jupyter/base-notebook)).  
   
