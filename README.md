@@ -5,7 +5,7 @@ This is a demo version of the PaNOSC Portal.
 
 The goal of this project is to provide an easy way of deploying and testing the PaNOSC Portal. This version has a minimum of prerequisites and comes with a database of 
 example values to allow users to test without having to define the different objects needed for the portal (example: Images, Flavours ... ).
-The whole architecture of the portal is documented at the following address: https://confluence.panosc.eu/display/wp4/Common+Portal+Initial+Design.
+The whole architecture of the portal is documented at the following address: https://confluence.panosc.eu/display/wp4/Common+Portal+Design.
 
 ## Requirements :
 - A kubernetes cluster with Helm 3 (see https://helm.sh/docs/intro/install/)
